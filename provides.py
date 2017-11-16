@@ -24,11 +24,11 @@ class DesignateProvides(RelationBase):
 
     @hook('{provides:designate}-relation-{joined,changed}')
     def changed(self):
-        self.set_state('{relation_name}.available')
+        self.set_state('{relation_name}.connected')
 
     @hook('{provides:designate}-relation-{departed,broken}')
     def departed(self):
-        self.remove_state('{relation_name}.available')
+        self.remove_state('{relation_name}.connected')
 
     def expose_endpoint(self, endpoint):
         self.set_remote('endpoint', endpoint)
